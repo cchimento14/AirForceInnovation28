@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Home</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../static/repo/css/bootstrap.min.css" type = "text/css"/>
+    <script src="../../static/repo/js/timeline.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+ <div class="col-sm-4">
+     <center>
+       <img src="../../static/repo/img/django-logo.jpg" class="responsive-img" style='max-height:200px;' alt="logo">
+     </center>
+     <hr>
+ </div>
+
+<h1>How to use Django</h1>
+<ol>
+
+    <li> <h2> <strong>First Install:</strong> "pip install django" in terminal</h2> </li>
+    <li> <h2> <strong>Mkdir:</strong> Mkdir MIT_DataVis</h2> </li>
+    <li> <h2> <strong>Startproject:</strong> "django-admin startproject AirForceInnovation26"</h2> </li>
+      <p> This creates your directories and sets up the flow of connections. </p>
+    <li> <h2> <strong>Startapp:</strong> "django-admin startapp repo"</h2> </li>
+      <p>prefferably something like personal or repo like I have.</p>
+    <li> <h2> <strong>Runserver:</strong> "python manage.py runserver" </h2> </li>
+      <p> Make sure you have manage.py in your AirForceInnovation26 file after you do startproject. </p>
+    <li> <h2> <strong>Website Loaded:</strong> Copy and Paste url: http://127.0.0.1:8000/ </h2> </li>
+      <p>You should have a django home page with a rocket congratulating you. </p>
+
+</ol>
+
+
+<div class = "container">
+  <div class="row align-items-center">
+    <div class="col-sm-2">
+        <p id="value-time"></p>
+    </div>
+    <div class="col-sm">
+        <div id="slider-time"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
