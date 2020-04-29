@@ -16,11 +16,11 @@ var sliderTime = d3
 .max(d3.max(dataTime))
 .step(1000*60*60*24*122)
 .width(800)
-.tickFormat(d3.timeFormat('%Y %b'))
+.tickFormat(d3.timeFormat('%B %Y'))
 .tickValues(dataTime)
 .default(new Date(2018, 01))
 .on('onchange', val => {
- d3.select('p#value-time').text(d3.timeFormat('%Y %b')(val));
+ d3.select('p#value-time').text(d3.timeFormat('%B %Y')(val));
 });
 
 var gTime = d3
@@ -32,5 +32,5 @@ var gTime = d3
 .attr('transform', 'translate(30,30)');
 
 gTime.call(sliderTime);
-d3.select('p#value-time').text(d3.timeFormat('%Y %b')(sliderTime.value()));
+d3.select('p#value-time').text(d3.timeFormat('%B %Y')(sliderTime.value()));
 
