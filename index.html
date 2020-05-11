@@ -37,7 +37,9 @@
 
  <script src="js/timeline.js"></script>
     <script type = "text/javascript">
-    d3.select("body").append("p").text("New paragraph!");
+    d3.csv("data.csv",function(data){
+        console.log(data);
+    });
     </script>
 
 </body>
