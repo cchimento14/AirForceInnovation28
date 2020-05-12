@@ -37,18 +37,19 @@
 
  <script src="js/timeline.js"></script>
     <script type = "text/javascript">
+    var dataset; //declare global varible, initially empty
     var rowConverter = function(d) {
         return{
             year: d.year,
             solicitation: d.solicitation,
             solicitation_date_gen: d.solicitation_date_gen,
             employees: parseFloat(d.employees),
-            Special.x: d.special,
-            Pitch.x: d.pitch,
+            special: d.Special.x,
+            pitch: d.Pitch.x,
             prev_award: d.prev_award,
             phase: d.phase,
             select: d.select,
-            Current.Financing.Status: d.financing_status
+            financing_status: d.Current.Financing.Status
         };
     }
     d3.csv("data.csv",rowConverter,function(data){
