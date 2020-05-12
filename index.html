@@ -44,12 +44,13 @@
             solicitation: d.solicitation,
             solicitation_date_gen: d.solicitation_date_gen,
             employees: parseFloat(d.employees),
-            special: d.Special.x,
-            pitch: d.Pitch.x,
+            special: d.special,
+            pitch: d.pitch,
             prev_award: d.prev_award,
             phase: d.phase,
             select: d.select,
-            financing_status: d.Current.Financing.Status
+            financing_status: d.financing_status,
+            cost: parseFloat(d.cost)
         };
     }
     d3.csv("data.csv",rowConverter,function(data){
