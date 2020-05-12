@@ -15,7 +15,7 @@ var sliderTime = d3
 .min(d3.min(dataTime))
 .max(d3.max(dataTime))
 .step(1000*60*60*24*122)
-.width(800)
+.width(screen.width*1/3)
 .tickFormat(d3.timeFormat('%B %Y'))
 .tickValues(dataTime)
 .default(new Date(2018, 01))
@@ -26,11 +26,10 @@ var sliderTime = d3
 var gTime = d3
 .select('div#slider-time')
 .append('svg')
-.attr('width', 900)
+.attr('width', screen.width*1/2)
 .attr('height', 100)
 .append('g')
 .attr('transform', 'translate(30,30)');
 
 gTime.call(sliderTime);
 d3.select('p#value-time').text(d3.timeFormat('%B %Y')(sliderTime.value()));
-
