@@ -1,4 +1,4 @@
-year,solicitation,solicitation_date_gen,employees,Special.x,Open.x,Pitch.x,prev_award,phase,select,Current.Financing.Status,cost
+year,solicitation,solicitation_date_gen,employees,special,open,pitch,prev_award,phase,select,financing_status,cost
 2019,19.2,7/15/2019,271,0,0,0,1,II,1,Corporate Backed or Acquired,749950
 2019,19.2,7/15/2019,12,0,0,0,0,II,0,NA,1496892
 2019,19.2,7/15/2019,12,0,0,0,1,II,1,Venture Capital-Backed,719207
