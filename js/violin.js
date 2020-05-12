@@ -96,4 +96,4 @@ var svg = d3.select("#my_dataviz")
             .y(function(d){ return(y(d.x0)) } )
             .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
         )
-})
+//}) these were the closing tags for the v4 data read
