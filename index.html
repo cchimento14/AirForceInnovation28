@@ -53,7 +53,7 @@
         };
     }
     d3.csv("data.csv",rowConverter,function(data){
-        console.log(data);
+        dataset = data; //hand off data to global var. for later accessibility
     });
     </script>
 
