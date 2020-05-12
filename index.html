@@ -38,8 +38,8 @@
  <script src="js/timeline.js"></script>
     <script type = "text/javascript">
     var dataset; //declare global varible, initially empty
-    var rowConverter = function(d) {
-        return{
+    d3.csv("data.csv", function(d) {
+        return {
             year: d.year,
             solicitation: d.solicitation,
             solicitation_date_gen: d.solicitation_date_gen,
@@ -51,11 +51,11 @@
             select: d.select,
             financing_status: d.financing_status,
             cost: parseFloat(d.cost)
-        };
-    }
-    d3.csv("data.csv",rowConverter,function(data){
-        dataset = data; //hand off data to global var. for later accessibility
-    });
+            };
+        }).then(function(data) {
+            console.log(data[0]);
+            dataset = data;
+        });
     </script>
 
 </body>
