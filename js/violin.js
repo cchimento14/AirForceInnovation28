@@ -40,7 +40,7 @@ var svg = d3.select("#my_dataviz")
     .range([height, 0])
   svg.append("g").call( d3.axisLeft(y) )
 
-  // Build and Show the X scale. It is a band scale like for a boxplot: each group has an dedicated RANGE on the axis. This range has a length of x.bandwidth 
+  // Build and Show the X scale. It is a band scale like for a boxplot: each group has an dedicated RANGE on the axis. This range has a length of x.bandwidth
   var x = d3.scaleBand()
     .range([ 0, width ])
     .domain(["Select", "Non-select"])
@@ -49,26 +49,28 @@ var svg = d3.select("#my_dataviz")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x))
 
+  var histogram = d3.histogram()
+    .domain(y.domain())
+    .thresholds(y.ticks(20))    // Important: how many bins approx are going to be made? It is the 'resolution' of the violin plot
+        .value(d => d)
+  var sumstat = d3.nest()  // nest function allows to group the calculation per level of a factor
+    .key(function(d) { return d.Species;})
+    .rollup(function(d) {   // For each key..
+        input = d.map(function(g) { return g.Sepal_Length;})    // Keep the variable called Sepal_Length
+        bins = histogram(input)   // And compute the binning on it.
+            return(bins)
+        })
+        .entries(data)
+
 });
 //
 
 
 //
-//   // Features of the histogram
-//   var histogram = d3.histogram()
-//         .domain(y.domain())
-//         .thresholds(y.ticks(20))    // Important: how many bins approx are going to be made? It is the 'resolution' of the violin plot
-//         .value(d => d)
+
 //
 //   // Compute the binning for each group of the dataset
-//   var sumstat = d3.nest()  // nest function allows to group the calculation per level of a factor
-//     .key(function(d) { return d.Species;})
-//     .rollup(function(d) {   // For each key..
-//       input = d.map(function(g) { return g.Sepal_Length;})    // Keep the variable called Sepal_Length
-//       bins = histogram(input)   // And compute the binning on it.
-//       return(bins)
-//     })
-//     .entries(data)
+
 //
 //   // What is the biggest number of value in a bin? We need it cause this value will have a width of 100% of the bandwidth.
 //   var maxNum = 0
