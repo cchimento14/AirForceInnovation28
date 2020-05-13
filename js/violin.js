@@ -40,16 +40,19 @@ var svg = d3.select("#my_dataviz")
     .range([height, 0])
   svg.append("g").call( d3.axisLeft(y) )
 
+  // Build and Show the X scale. It is a band scale like for a boxplot: each group has an dedicated RANGE on the axis. This range has a length of x.bandwidth 
+  var x = d3.scaleBand()
+    .range([ 0, width ])
+    .domain(["Select", "Non-select"])
+    .padding(0.05)     // This is important: it is the space between 2 groups. 0 means no padding. 1 is the maximum.
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+
 });
 //
-//   // Build and Show the X scale. It is a band scale like for a boxplot: each group has an dedicated RANGE on the axis. This range has a length of x.bandwidth
-//   var x = d3.scaleBand()
-//     .range([ 0, width ])
-//     .domain(["Select", "Non-select"])
-//     .padding(0.05)     // This is important: it is the space between 2 groups. 0 means no padding. 1 is the maximum.
-//   svg.append("g")
-//     .attr("transform", "translate(0," + height + ")")
-//     .call(d3.axisBottom(x))
+
+
 //
 //   // Features of the histogram
 //   var histogram = d3.histogram()
