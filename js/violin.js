@@ -77,21 +77,21 @@ var svg = d3.select("#my_dataviz")
     .domain([-maxNum,maxNum])
 
     svg
-        .selectAll("myViolin")
-        .data(sumstat)
-        .enter()        // So now we are working group per group
-        .append("g")
-          .attr("transform", function(d){ return("translate(" + x(d.key) +" ,0)") } ) // Translation on the right to be at the group position
-        .append("path")
-            .datum(function(d){ return(d.value)})     // So now we are working bin per bin
-            .style("stroke", "none")
-            .style("fill","#69b3a2")
-            .attr("d", d3.area()
-                .x0(function(d){ return(xNum(-d.length)) } )
-                .x1(function(d){ return(xNum(d.length)) } )
-                .y(function(d){ return(y(d.x0)) } )
-                .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
-            )
+    .selectAll("myViolin")
+    .data(sumstat)
+    .enter()        // So now we are working group per group
+    .append("g")
+      .attr("transform", function(d){ return("translate(" + x(d.key) +" ,0)") } ) // Translation on the right to be at the group position
+    .append("path")
+        .datum(function(d){ return(d.value)})     // So now we are working bin per bin
+        .style("stroke", "none")
+        .style("fill","#69b3a2")
+        .attr("d", d3.area()
+            .x0(function(d){ return(xNum(-d.length)) } )
+            .x1(function(d){ return(xNum(d.length)) } )
+            .y(function(d){ return(y(d.x0)) } )
+            .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
+          )
 
 });
 //
