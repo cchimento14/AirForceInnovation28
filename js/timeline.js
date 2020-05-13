@@ -29,7 +29,7 @@ var gTime = d3
 .attr('width', screen.width*1/2)
 .attr('height', 100)
 .append('g')
-.attr('transform', 'translate(30,30)');
+.attr('transform', 'translate(40,30)');
 
 gTime.call(sliderTime);
 d3.select('p#value-time').text(d3.timeFormat('%B %Y')(sliderTime.value()));
