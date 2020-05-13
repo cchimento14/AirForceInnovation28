@@ -1,5 +1,6 @@
 var dataset; //declare global varible, initially empty
-d3.csv("data.csv", function(d) {
+d3.csv('data.csv')
+  .then(function(d) {
     return {
         year: d.year,
         solicitation: d.solicitation,
@@ -13,9 +14,7 @@ d3.csv("data.csv", function(d) {
         financing_status: d.financing_status,
         cost: parseFloat(d.cost)
         };
-    }).then(function(data) {
-        dataset = data;
-    });
+    })
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
