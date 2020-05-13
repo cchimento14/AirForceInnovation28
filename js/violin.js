@@ -15,7 +15,7 @@ d3.csv("data.csv", function(d) {
         };
     }).then(function(data) {
         dataset = data;
-    });
+
 
 // // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
@@ -39,6 +39,8 @@ var svg = d3.select("#my_dataviz")
     .domain([ 0, d3.max(dataset,function(d){return d["employees"]; })])          // Note that here the Y scale is set manually
     .range([height, 0])
   svg.append("g").call( d3.axisLeft(y) )
+
+});
 //
 //   // Build and Show the X scale. It is a band scale like for a boxplot: each group has an dedicated RANGE on the axis. This range has a length of x.bandwidth
 //   var x = d3.scaleBand()
