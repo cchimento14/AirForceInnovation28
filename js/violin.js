@@ -53,10 +53,11 @@ var svg = d3.select("#my_dataviz")
     .domain(y.domain())
     .thresholds(y.ticks(20))    // Important: how many bins approx are going to be made? It is the 'resolution' of the violin plot
         .value(d => d)
+
   var sumstat = d3.nest()  // nest function allows to group the calculation per level of a factor
-    .key(function(d) { return d.Species;})
+    .key(function(d) { return d.select;}) //()
     .rollup(function(d) {   // For each key..
-        input = d.map(function(g) { return g.Sepal_Length;})    // Keep the variable called Sepal_Length
+        input = d.map(function(g) { return g.employees;})    // Keep the variable called employees
         bins = histogram(input)   // And compute the binning on it.
             return(bins)
         })
