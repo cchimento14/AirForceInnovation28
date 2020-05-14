@@ -69,7 +69,7 @@ var svg = d3.select("#my_dataviz")
         .value(d => d)
 
   var sumstat = d3.nest()  // nest function allows to group the calculation per level of a factor
-    .key(function(d) { return d.select;}) //()
+    .key(function(d) { return d.special;}) //()
     .rollup(function(d) {   // For each key..
         input = d.map(function(g) { return g.employees;})    // Keep the variable called employees
         bins = histogram(input)   // And compute the binning on it.
@@ -90,22 +90,22 @@ var svg = d3.select("#my_dataviz")
     .range([0, x.bandwidth()])
     .domain([-maxNum,maxNum])
 
-    svg
-    .selectAll("myViolin")
-    .data(sumstat)
-    .enter()        // So now we are working group per group
-    .append("g")
-      .attr("transform", function(d){ return("translate(" + x(d.key) +" ,0)") } ) // Translation on the right to be at the group position
-    .append("path")
-        .datum(function(d){ return(d.value)})     // So now we are working bin per bin
-        .style("stroke", "none")
-        .style("fill","#69b3a2")
-        .attr("d", d3.area()
-            .x0(function(d){ return(xNum(-d.length)) } )
-            .x1(function(d){ return(xNum(d.length)) } )
-            .y(function(d){ return(y(d.x0)) } )
-            .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
-          )
+  var violin = svg
+                .selectAll("myViolin")
+                .data(sumstat)
+                .enter()        // So now we are working group per group
+                .append("g")
+                    .attr("transform", function(d){ return("translate(" + x(d.key) +" ,0)") } ) // Translation on the right to be at the group position
+                .append("path")
+                    .datum(function(d){ return(d.value)})     // So now we are working bin per bin
+                    .style("stroke", "none")
+                    .style("fill","#69b3a2")
+                    .attr("d", d3.area()
+                    .x0(function(d){ return(xNum(-d.length)) } )
+                    .x1(function(d){ return(xNum(d.length)) } )
+                    .y(function(d){ return(y(d.x0)) } )
+                    .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
+                )
 
           function update(selectedGroup) {
 
@@ -113,7 +113,7 @@ var svg = d3.select("#my_dataviz")
                 var dataFilter = dataset.map(function(d){return {time: d.time, value:d[selectedGroup]} })
 
                 // Give these new data to update line
-                line
+                violin
                     .datum(dataFilter)
                     .transition()
                     .duration(1000)
