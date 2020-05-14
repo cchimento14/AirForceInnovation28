@@ -35,6 +35,19 @@ var svg = d3.select("#my_dataviz")
 // //d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) { Davis. This is the part we can't use in v5
 
   var allGroup =["Special Topic","Open Topic","Pitch Day"]
+
+  d3.select("#selectButton")
+     .selectAll('myOptions')
+     .data(allGroup)
+     .enter()
+     .append('option')
+     .text(function (d) { return d; }) // text showed in the menu
+     .attr("value", function (d) { return d; }) // corresponding value returned by the but
+
+  var myColor = d3.scaleOrdinal()
+    .domain(allGroup)
+    .range(d3.schemeSet2)
+
 //   // Build and Show the Y scale
   var y = d3.scaleLinear()
     .domain([ 0, d3.quantile(dataset.map(d => d.employees).sort(d3.ascending),0.95)])          // Note that here the Y scale is set manually
@@ -93,6 +106,34 @@ var svg = d3.select("#my_dataviz")
             .y(function(d){ return(y(d.x0)) } )
             .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
           )
+
+          // A function that update the chart
+          function update(selectedGroup) {
+
+            // Create new data with the selection?
+            var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+
+            // Give these new data to update line
+            line
+                .datum(dataFilter)
+                .transition()
+                .duration(1000)
+                .attr("d", d3.line()
+                  .x(function(d) { return x(+d.time) })
+                  .y(function(d) { return y(+d.value) })
+                )
+                .attr("stroke", function(d){ return myColor(selectedGroup) })
+          }
+
+          // When the button is changed, run the updateChart function
+          d3.select("#selectButton").on("change", function(d) {
+              // recover the option that has been chosen
+              var selectedOption = d3.select(this).property("value")
+              // run the updateChart function with this selected option
+              update(selectedOption)
+          })
+
+      })
 
 
 
