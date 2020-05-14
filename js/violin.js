@@ -107,34 +107,29 @@ var svg = d3.select("#my_dataviz")
             .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
           )
 
-          // A function that update the chart
           function update(selectedGroup) {
 
-            // Create new data with the selection?
-            var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+                // Create new data with the selection?
+                var dataFilter = dataset.map(function(d){return {time: d.time, value:d[selectedGroup]} })
 
-            // Give these new data to update line
-            line
-                .datum(dataFilter)
-                .transition()
-                .duration(1000)
-                .attr("d", d3.line()
-                  .x(function(d) { return x(+d.time) })
-                  .y(function(d) { return y(+d.value) })
-                )
-                .attr("stroke", function(d){ return myColor(selectedGroup) })
-          }
+                // Give these new data to update line
+                line
+                    .datum(dataFilter)
+                    .transition()
+                    .duration(1000)
+                    .attr("d", d3.line()
+                      .x(function(d) { return x(+d.time) })
+                      .y(function(d) { return y(+d.value) })
+                    )
+                    .attr("stroke", function(d){ return myColor(selectedGroup) })
+              }
 
-          // When the button is changed, run the updateChart function
-          d3.select("#selectButton").on("change", function(d) {
-              // recover the option that has been chosen
-              var selectedOption = d3.select(this).property("value")
-              // run the updateChart function with this selected option
-              update(selectedOption)
-          })
-
-      })
-
-
+              // When the button is changed, run the updateChart function
+              d3.select("#selectButton").on("change", function(d) {
+                  // recover the option that has been chosen
+                  var selectedOption = d3.select(this).property("value")
+                  // run the updateChart function with this selected option
+                  update(selectedOption)
+              })
 
 });
