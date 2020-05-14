@@ -33,6 +33,15 @@ var svg = d3.select("#my_dataviz")
 //
 // // Read the data and compute summary statistics for each specie
 // //d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) { Davis. This is the part we can't use in v5
+var allGroup2 =["Employees","Award Amount"]
+
+d3.select("#selectButton2")
+   .selectAll('myOptions')
+   .data(allGroup2)
+   .enter()
+   .append('option')
+   .text(function (d) { return d; }) // text showed in the menu
+   .attr("value", function (d) { return d; }) // corresponding value returned by the but
 
   var allGroup =["Special Topic","Open Topic","Pitch Day"]
 
@@ -69,7 +78,7 @@ var svg = d3.select("#my_dataviz")
         .value(d => d)
 
   var sumstat = d3.nest()  // nest function allows to group the calculation per level of a factor
-    .key(function(d) { return d.special;}) //()
+    .key(function(d) { return d.prev_award;}) //()
     .rollup(function(d) {   // For each key..
         input = d.map(function(g) { return g.employees;})    // Keep the variable called employees
         bins = histogram(input)   // And compute the binning on it.
