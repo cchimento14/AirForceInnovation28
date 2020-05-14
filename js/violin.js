@@ -33,10 +33,11 @@ var svg = d3.select("#my_dataviz")
 //
 // // Read the data and compute summary statistics for each specie
 // //d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) { Davis. This is the part we can't use in v5
-//
+
+  var allGroup =["Special Topic","Open Topic","Pitch Day"]
 //   // Build and Show the Y scale
   var y = d3.scaleLinear()
-    .domain([ 0, d3.max(dataset,function(d){return d["employees"]; })])          // Note that here the Y scale is set manually
+    .domain([ 0, d3.quantile(dataset.map(d => d.employees).sort(d3.ascending),0.95)])          // Note that here the Y scale is set manually
     .range([height, 0])
   svg.append("g").call( d3.axisLeft(y) )
 
@@ -93,22 +94,6 @@ var svg = d3.select("#my_dataviz")
             .curve(d3.curveCatmullRom)    // This makes the line smoother to give the violin appearance. Try d3.curveStep to see the difference
           )
 
+
+
 });
-//
-
-
-//
-
-//
-//   // Compute the binning for each group of the dataset
-
-//
-//
-
-//
-//   // The maximum width of a violin must be x.bandwidth = the width dedicated to a group
-
-//
-//   // Add the shape to this svg!
-
-//}) these were the closing tags for the v4 data read
